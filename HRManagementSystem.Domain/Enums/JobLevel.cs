@@ -8,11 +8,12 @@ namespace HRManagementSystem.Domain.Enums
 {
     public enum JobLevel
     {
-        Junior = 1,
-        Mid = 2,
-        Senior = 3,
-        Lead = 4,
-        Manager = 5,
-        Director = 6
+        Intern = 1,
+        Junior = 2,
+        Mid = 3,
+        Senior = 4,
+        Lead = 5,
+        Manager = 6,
+        Director = 7
     }
 }

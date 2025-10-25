@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRManagementSystem.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,26 +7,26 @@ using System.Threading.Tasks;
 
 namespace HRManagementSystem.Domain.ValueObjects
 {
-    public class BankAccount
+    public class ContractDetails
     {
-        public string BankName { get; private set; }
-        public string AccountNumber { get; private set; }
-        public string IBAN { get; private set; }
+        public DateTime StartDate { get; private set; }
+        public DateTime EndDate { get; private set; }
+        public ContractType ContractType { get; private set; } 
 
-        private BankAccount() { }
+        private ContractDetails() { }
 
-        public BankAccount(string bankName, string accountNumber, string iban)
+        public ContractDetails(DateTime startDate, DateTime endDate, ContractType contractType)
         {
-            if (string.IsNullOrWhiteSpace(bankName))
-                throw new ArgumentException("Bank name is required.", nameof(bankName));
-            if (string.IsNullOrWhiteSpace(accountNumber))
-                throw new ArgumentException("Account number is required.", nameof(accountNumber));
-            if (string.IsNullOrWhiteSpace(iban))
-                throw new ArgumentException("IBAN is required.", nameof(iban));
+            if (endDate <= startDate)
+                throw new ArgumentException("End date must be after start date.");
+            if (!Enum.IsDefined(typeof(ContractType), contractType))
+                throw new ArgumentException("Invalid contract type.", nameof(contractType));
 
-            BankName = bankName;
-            AccountNumber = accountNumber;
-            IBAN = iban;
+            StartDate = startDate;
+            EndDate = endDate;
+            ContractType = contractType;
         }
+
+        public bool IsActive() => DateTime.Now >= StartDate && DateTime.Now <= EndDate;
     }
 }

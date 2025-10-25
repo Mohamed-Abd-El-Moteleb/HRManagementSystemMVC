@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRManagementSystem.Domain.Interfaces
+namespace HRManagementSystem.Application.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
         IEmployeeRepository Employees { get; }
         IDepartmentRepository Departments { get; }
-
-        Task<int> CompleteAsync();
+        Task<int> SaveChangesAsync();
     }
 }
