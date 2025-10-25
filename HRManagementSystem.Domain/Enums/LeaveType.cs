@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace HRManagementSystem.Domain.Enums
 {
-    internal class LeaveType
+    public enum LeaveType
     {
+        Annual,
+        Sick,
+        Unpaid,
+        Maternity,
+        Paternity,
+        Emergency
     }
 }

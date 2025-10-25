@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRManagementSystem.Domain.Interfaces
+namespace HRManagementSystem.Application.Interfaces.Repositories
 {
     public interface IEmployeeRepository
     {
         Task<Employee?> GetByIdAsync(int id);
         Task<IEnumerable<Employee>> GetAllAsync();
         Task AddAsync(Employee employee);
-        void Update(Employee employee);
-        void Delete(Employee employee);
+        Task Update(Employee employee);
+        Task Delete(Employee employee);
         Task<IEnumerable<Employee>> GetByDepartmentIdAsync(int departmentId);
     }
 }
